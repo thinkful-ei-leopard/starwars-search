@@ -1,15 +1,13 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export class ResultList extends Component {
-    render() {
-        return (
-            <ul>
-                <li>Name 1</li>
-                <li>Name 2</li>
-                <li>Name 3</li>
-            </ul>
-        )
-    }
+export default function ResultList(props) {
+    const displayNames = props.charactersArray.map(character => {
+        return <li>{character.name}</li>
+    })
+
+    return (
+        <ul>
+            {displayNames}
+        </ul>
+    )
 }
-
-export default ResultList
