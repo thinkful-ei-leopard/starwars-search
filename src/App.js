@@ -9,8 +9,16 @@ class App extends React.Component {
   }
 
 
-  componentDidMount() {
-    fetch(`https://swapi.co/api/people/?search=skywalker`)
+  // componentDidMount() {
+  //   fetch(`https://swapi.co/api/people/?search=skywalker`)
+  //     .then(response => response.json())
+  //     .then(responseJson => this.setState({characters: responseJson.results}))
+  // }
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+
+    fetch(`https://swapi.co/api/people/?search=${event.target.name.value}`)
       .then(response => response.json())
       .then(responseJson => this.setState({characters: responseJson.results}))
   }
@@ -19,7 +27,7 @@ class App extends React.Component {
     return (
       <main className='App'>
         <Header />
-        <SearchForm />
+        <SearchForm submit={this.handleSubmit}/>
         <ResultList charactersArray={this.state.characters}/>
       </main>
     );
